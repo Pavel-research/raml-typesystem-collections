@@ -1,0 +1,31 @@
+#%RAML 1.0
+title: Hello
+mediaType: application/json
+baseUri: http://hello.org
+uses:
+ c: ../../collections.raml
+types:
+  Item:
+    properties:
+      id: integer
+      name: string
+/items:
+   get:
+     (c.collection):
+     (c.paging):
+       result: items
+       total: total
+       offset: offset
+       limit: limit
+     queryParameters:
+       offset: number
+       limit:  number
+       filter?: string
+     responses:
+       200:
+         body:
+           properties:
+             items:
+               items: Item
+               type: array
+             total: number

@@ -20,14 +20,14 @@
     "webpack": "^2.5.1",
     "raml-typesystem-light":"^0.0.22",
     "raml-1-parser": "^1.1.21",
-    "json2raml-loader": "0.0.14"
+    "json2raml-loader": "0.0.22"
   },
   "directories": [
     "dist"
   ],
   "dependencies": {
     "@types/node": "^6.0.55",
-    "callables-rpc-views": "0.0.21",
+    "callables-rpc-views": "0.0.23",
     "raml-typesystem-scopes": "0.0.22",
     "raml-typesystem-shapes": "0.0.22",
     "raml1-domain-model": "^0.0.22"
