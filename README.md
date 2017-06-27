@@ -23,7 +23,7 @@ Goal of this project is to provide a typescript node module which hides collecti
 
 We base our work on top of [RPC Views](https://github.com/callables/callables-rpc-views) which allows us to abstract from a particular RPC transport which is used to expose an API.
 
-## Kinds of the collections:
+## Collection kinds:
 
 We are separating following kinds of the collections:
 
