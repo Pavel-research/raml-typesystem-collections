@@ -9,7 +9,7 @@ Resources can also exist outside any collection.
 In this case, we refer to these resources as singleton resources. 
 Collections are themselves resources as well.
 ```
-[Very nice guide to RESTFull API design](http://restful-api-design.readthedocs.io/en/latest/resources.html)
+(This is taken from [Very nice guide to RESTFull API design](http://restful-api-design.readthedocs.io/en/latest/resources.html))
 
 
 One most important property of collections is an ability of the client to iterate over them.
