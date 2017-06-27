@@ -15,7 +15,7 @@ Collections are themselves resources as well.
 One most important property of collections is an ability of the client to iterate over them.
 
 Typical APIs split content of the collection into the pages, where each page can be obtained by performing
-an HTTP request to particular url and contains collection member representations.
+an HTTP request to particular url and contains collection members representations.
 
 ## Kinds of the collections:
 
