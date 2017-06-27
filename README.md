@@ -15,11 +15,11 @@ Collections are themselves resources as well.
 One most important property of collections is an ability of the client to iterate over them. Typical APIs split content of the collection into the pages, where each page can be obtained by performing
 an HTTP request to particular url and contains collection members representations. 
 
-We use term collection protocol for the mechanism which should be used to traverse through the collection.
+We use term `collection protocol` for the mechanism which should be used to traverse through the collection.
 
 
 ### Project goals
-Goal of this project is to provide a typescript node module which hides collection protocol implementation details from the developer and allows to traverse collections with a uniform interface.
+Goal of this project is to provide a typescript node module which hides `collection protocol` implementation details from the developer and allows to traverse collections with a uniform interface.
 
 We base our work on top of [RPC Views](https://github.com/callables/callables-rpc-views) which allows us to abstract from a particular RPC transport which is used to expose an API.
 
