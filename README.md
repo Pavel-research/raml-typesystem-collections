@@ -38,7 +38,10 @@ Sometimes collections have parameters, we split parameters in the following sema
  * Unknown
 
 
-Specifying the collection:
+## Specifying the collection:
+
+We assume that any callable function without side effects (they are formed from GET methods of API) and which returns an array
+or is annotated with a paging annotation is a collection.
 
 ```raml 
  paging:
