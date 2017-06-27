@@ -72,7 +72,7 @@ If collection does not contains `paging` annotation, we assume that collection i
 in the same way as it is implemented in the [Github API](https://developer.github.com/v3/guides/traversing-with-pagination/)
 
 
-Usage:
+### Usage:
 
 ```typescript
 
