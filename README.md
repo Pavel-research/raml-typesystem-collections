@@ -68,7 +68,7 @@ or is annotated with a paging annotation is a collection.
        
 ```
 
-If collection does not contains paging annotation, we assume that collection is paged by `Link` headers
+If collection does not contains `paging` annotation, we assume that collection is paged by `Link` headers
 in the same way as it is implemented in the [Github API](https://developer.github.com/v3/guides/traversing-with-pagination/)
 
 
