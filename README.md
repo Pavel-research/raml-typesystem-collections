@@ -18,7 +18,7 @@ an HTTP request to particular url and contains collection members representation
 We use term collection protocol for the mechanism which should be used to traverse through the collection.
 
 
-### Project goal
+### Project goals
 Goal of this project is to provide a typescript node module which hides collection protocol implementation details from the developer and allows to traverse collections with a uniform interface.
 
 We base our work on top of [RPC Views](https://github.com/callables/callables-rpc-views) which allows us to abstract from a particular RPC transport which is used to expose an API.
