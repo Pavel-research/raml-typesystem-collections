@@ -1,7 +1,65 @@
 import n=require("callables-rpc-views")
 import model=require("raml1-domain-model")
 
-export interface Collection {
+
+export interface BasicCollection{
+
+    range(): model.Type
+
+    forEach(f: (v: any, i?: number) => void): Promise<any>
+
+    map(f: (v: any, i?: number) => any): Promise<any[]>
+}
+
+interface Future<v>{
+
+    call():Promise<v>
+}
+
+class PreparedCall implements Future<any>{
+
+    parameters: { [name:string]:any}
+
+    function:n.CallableFunction;
+
+    call(){
+        return this.function.call(this.parameters)
+    }
+}
+
+interface Page{
+    value():Promise<any[]>
+    next():Page
+    previous():Page
+}
+
+
+export abstract class AbstractPagedCollection{
+
+    protected _range: model.Type;
+
+
+    constructor(protected _n: n.CallableFunction) {
+        if (_n.returnType().isArray()) {
+            this._range = _n.returnType().componentType();
+        }
+    }
+
+    abstract forEach(f: (v: any, i?: number) => void): Promise<any>
+
+    map(f: (v: any, i?: number) => any) {
+        var mm=[];
+        return this.forEach((x,i)=>{
+            mm.push(f(x,i));
+        }).then(x=>Promise.resolve(mm));
+    }
+
+    range(): model.Type{
+        return this._range;
+    }
+}
+
+export interface Collection extends BasicCollection{
 
     parameters(): n.Parameter[];
 
@@ -19,11 +77,6 @@ export interface Collection {
 
     total(): Promise<any>
 
-    range(): model.Type
-
-    forEach(f: (v: any, i?: number) => void): Promise<any>
-
-    map(f: (v: any, i?: number) => any): Promise<any[]>
 }
 
 export interface PagingSpec{
@@ -49,8 +102,9 @@ export class BasicPagedCollection implements Collection {
     private hasTotal: boolean;
     private _total: number;
 
-    private _pagingSpec:PagingSpec;
+    private _elementsPerPage: number
 
+    private _pagingSpec:PagingSpec;
 
     pagingSpec():PagingSpec{
         if (this._pagingSpec){
@@ -104,7 +158,6 @@ export class BasicPagedCollection implements Collection {
         }
         else{
             this._range=this._n.returnType().componentType();
-
         }
         var ps=this.pagingSpec();
         let filteredPars:model.Parameter[]=[];
@@ -135,6 +188,12 @@ export class BasicPagedCollection implements Collection {
             else{
                 this._currentPage=x;
             }
+            if (this.hasTotal){
+                if (this._total>this._currentPage.length){
+                    this._elementsPerPage=this._currentPage.length;
+                }
+            }
+            return this._currentPage;
         })
     }
 
@@ -171,6 +230,9 @@ export class BasicPagedCollection implements Collection {
     }
 
     lastPage(): Promise<any[]> {
+        if (this.hasTotal&&this._elementsPerPage){
+
+        }
         return null;
     }
 
@@ -187,7 +249,9 @@ export class BasicPagedCollection implements Collection {
 
     forEach(f: (v: any, i?: number) => void) {
         this.firstPage().then(x=>{
+            if (this._elementsPerPage){
 
+            }
         })
         return null;
     }

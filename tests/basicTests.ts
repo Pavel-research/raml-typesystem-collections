@@ -26,7 +26,6 @@ export function setNextResponse(m:main.BasicHTTPModule,value:any){
     }
 }
 
-
 describe("structure tests", function () {
     it("test0", function (done) {
         var l = loadApi("test1");
@@ -66,7 +65,6 @@ describe("structure tests", function () {
     })
     it("test3", function (done) {
         var l = loadApi("test3");
-
         assert(colections.isCollection(l.functions()[0]));
         let col=colections.toCollection(l.functions()[0])
         var parameters = col.parameters();
@@ -79,7 +77,7 @@ describe("structure tests", function () {
         assert(colections.isCollection(l.functions()[0]));
         let col=colections.toCollection(l.functions()[0])
         col.forEach(x=>{
-
-        })
+            console.log(x);
+        }).then(x=>done())
     })
 })
