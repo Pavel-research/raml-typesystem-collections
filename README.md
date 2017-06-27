@@ -12,14 +12,12 @@ Collections are themselves resources as well.
 (This is taken from [Very nice guide to RESTFull API design](http://restful-api-design.readthedocs.io/en/latest/resources.html))
 
 
-One most important property of collections is an ability of the client to iterate over them. 
+One most important property of collections is an ability of the client to iterate over them. Typical APIs split content of the collection into the pages, where each page can be obtained by performing
+an HTTP request to particular url and contains collection members representations.
+
 
 **The goal of this repository:**
-is to provide a mechanism and tool to traverse a collections. We base our work on top of [RPC Views](https://github.com/callables/callables-rpc-views) which allows us to abstract from a particular transport which is used to expose an API.
-
-
-Typical APIs split content of the collection into the pages, where each page can be obtained by performing
-an HTTP request to particular url and contains collection members representations.
+is to provide a mechanism and tool to traverse a collections as well as an abstraction of top of collection methods. We base our work on top of [RPC Views](https://github.com/callables/callables-rpc-views) which allows us to abstract from a particular transport which is used to expose an API.
 
 ## Kinds of the collections:
 
