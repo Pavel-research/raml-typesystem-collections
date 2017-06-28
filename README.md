@@ -148,7 +148,68 @@ if parameter is used to choose sort direction you may annotate it with `sortDire
 ```raml
 sortDirection:  nil
 ```
+### Example:
 
+this example shows how github issues endpoint may be annotated to get understanding about how to page and filter it.
+
+```raml
+ /issues:
+    get:
+      displayName: Issues
+      (core.list):
+      (core.paging): { page: page}
+      queryParameters:
+        milestone:
+          (core.reference): ght.Milestone.number
+          (core.filter):
+             property: milestone.number
+        state:
+            enum: [open, closed, all]
+            default: open
+            displayName: Issue State
+            (core.filter):
+               noFilterValue: all
+        assignee:
+           (core.reference): Assignee.login
+           (core.filter):
+              property: assignees.login
+        creator:
+           (core.reference): User.login
+           (core.filter):
+              property: user.login
+        mentioned:
+          (core.reference): User.login
+          (core.filter):
+        direction:
+          (core.sortDirection): true
+          enum: [asc,desc]
+          default: desc
+        labels:
+          type: string[]
+          uniqueItems: true
+          (core.collectionFormat): csv
+          (core.reference): ght.Label.name
+          (core.filter):
+             property: labels.name
+        since:
+           type: datetime
+           (core.filter):
+             property: updated_at
+             op: ge
+        sort:
+          enum: [comments, created, updated]
+          default: created
+          displayName: Order by
+          (core.ordering):
+            created: created_at
+            updated: updated_at
+            comments: comments
+        page: integer
+      responses:
+        200:
+          body:
+              type: Issue[]
+```
 
 ### Usage:
 
