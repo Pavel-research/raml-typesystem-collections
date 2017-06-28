@@ -150,17 +150,14 @@ sortDirection:  nil
 ```
 ### Example:
 
-this example shows how github issues endpoint may be annotated to get understanding about how to page and filter it.
+this example shows how github issues endpoint might be annotated to get understanding about how to page and filter it.
 
 ```raml
  /issues:
     get:
-      displayName: Issues
-      (core.list):
       (core.paging): { page: page}
       queryParameters:
         milestone:
-          (core.reference): ght.Milestone.number
           (core.filter):
              property: milestone.number
         state:
@@ -170,11 +167,9 @@ this example shows how github issues endpoint may be annotated to get understand
             (core.filter):
                noFilterValue: all
         assignee:
-           (core.reference): Assignee.login
            (core.filter):
               property: assignees.login
         creator:
-           (core.reference): User.login
            (core.filter):
               property: user.login
         mentioned:
@@ -185,10 +180,7 @@ this example shows how github issues endpoint may be annotated to get understand
           enum: [asc,desc]
           default: desc
         labels:
-          type: string[]
-          uniqueItems: true
-          (core.collectionFormat): csv
-          (core.reference): ght.Label.name
+          type: string
           (core.filter):
              property: labels.name
         since:
