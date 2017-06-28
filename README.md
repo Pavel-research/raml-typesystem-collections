@@ -95,8 +95,34 @@ or alternatively you may use this annotations:
 If collection does not contains `paging` related annotations, we assume that collection is paged by `Link` headers
 in the same way as it is implemented in the [Github API](https://developer.github.com/v3/guides/traversing-with-pagination/)
 
-#### Specifying filters
+#### Specifying Filters
 
+You may annotate method parameters with the `filter` annotation, which allows you to mark that parameter is used for filtering. This annotation has a following syntax:
+
+```raml
+filter: FilterMapping |  nil
+```
+where FilterMapping is defined as following raml type:
+
+```raml
+  FilterMapping:
+    properties:
+      property?: 
+         type: string 
+         description: name of the property which is used to filter collection elements
+      valueMappings?:
+            properties:
+               //: 
+                 type: string  
+                 description: allows to remap values of parameter to values of the filter
+      noFilterValue?: 
+        type: string 
+        description: value which is used when filter is not set
+      filterOp?: 
+         description: operator which is used to perform filtration
+         default: eq
+         enum: [ eq, lt, gt, like, ge, le ]
+```
 
 ### Usage:
 
