@@ -102,7 +102,7 @@ You may annotate method parameters with the `filter` annotation, which allows yo
 ```raml
 filter: FilterMapping |  nil
 ```
-where FilterMapping is defined as following raml type:
+where `FilterMapping` is defined as following raml type:
 
 ```raml
   FilterMapping:
@@ -123,6 +123,32 @@ where FilterMapping is defined as following raml type:
          default: eq
          enum: [ eq, lt, gt, like, ge, le ]
 ```
+
+you also may mark that parameter is used to sort elements of collection by using `ordering` annotation which we define as
+
+```raml
+ordering: OrderingMappings | nil
+```
+where `OrderingMappings` is defined as following raml type
+
+```raml
+  OrderingMapping:
+    properties:
+      property: string
+      descending?: boolean
+  OrderingMappings:
+    properties:
+      //: 
+        type: string | OrderingMapping
+        description: maps parameter value to the name of the property which is used to sort the collection
+```      
+
+if parameter is used to choose sort direction you may annotate it with `sortDirection' annotation
+
+```raml
+sortDirection:  nil
+```
+
 
 ### Usage:
 
