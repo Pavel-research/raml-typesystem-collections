@@ -219,11 +219,13 @@ export class BasicPagedCollection implements Collection {
 
 export function isCollection(n: n.CallableFunction): boolean {
     var rs=false;
-    n.annotations().forEach(x=>{
-        if (x.name()=="collection"||x.name().endsWith(".collection")){
-            rs=true;
-        }
-    })
+    if (n.returnType().isArray()&&n.isSafe()){
+        return true;
+    }
+    if (n.hasAnnotation("paging")){
+        return true;
+    }
+
     return rs;
 }
 
