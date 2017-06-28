@@ -64,12 +64,39 @@ or is annotated with a paging annotation is a collection.
      description: name of the response body property containing elements of the collection
    total?: 
      type: string  
-     description: name of the response body property containing total number of  elements in the collection(with respect to current collection filters)
-       
+     description: name of the response body property containing total number of  elements in the collection(with respect to current collection filters)       
+   zeroBased?: 
+     type: boolean
+     description: you can pass false here if element numbering in your collection starts from 1
 ```
 
-If collection does not contains `paging` annotation, we assume that collection is paged by `Link` headers
+or alternatively
+
+
+```raml 
+ paging:
+   offset?: 
+     type: nil  
+     description: annotate parameter with this annotation to mark that it contains  offset from the start of the collection
+   page?: 
+     type: nil
+     description: annotate parameter with this annotation to mark that it contains number of the page
+   limit?: 
+      type: nil
+      description: annotate parameter with this annotation to mark that it contains number of elements in the page
+   result?: 
+     type: nil
+     description: annotate property of the result with this annotation to mark that it contains elements of the collection
+   total?: 
+     type: nil  
+     description: annotate property of the response with this annotation to mark that it contains total number of  elements in the collection(with respect to current collection filters)       
+```
+
+
+If collection does not contains `paging` related annotations, we assume that collection is paged by `Link` headers
 in the same way as it is implemented in the [Github API](https://developer.github.com/v3/guides/traversing-with-pagination/)
+
+
 
 
 ### Usage:
