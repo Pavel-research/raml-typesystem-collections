@@ -70,7 +70,7 @@ or is annotated with a paging annotation is a collection.
      description: you can pass false here if element numbering in your collection starts from 1
 ```
 
-or alternatively you may use this annotation
+or alternatively you may use this annotations:
 
 ```raml 
  paging:
@@ -95,7 +95,7 @@ or alternatively you may use this annotation
 If collection does not contains `paging` related annotations, we assume that collection is paged by `Link` headers
 in the same way as it is implemented in the [Github API](https://developer.github.com/v3/guides/traversing-with-pagination/)
 
-
+#### Specifying filters
 
 
 ### Usage:
