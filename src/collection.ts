@@ -159,9 +159,6 @@ class OffsetOrPageBasedCollection implements BasicCollection{
         return new ParameterValueBasedPage({},this.c,this.spec.pName,max,this.spec.zeroBased,this.spec.results,this.spec._total,this.spec.isByPage,pSize);
     }
 }
-class LinkHeadersBasedCollection implements BasicCollection{
-
-}
 
 function allPages(p:ParameterValueBasedPage):Promise<Page[]>{
     if (!p.isLoaded()){

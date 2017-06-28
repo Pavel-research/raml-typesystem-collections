@@ -11,53 +11,6 @@ export interface BasicCollection{
     map(f: (v: any, i?: number) => any): Promise<any[]>
 }
 
-interface Future<v>{
-
-    call():Promise<v>
-}
-
-class PreparedCall implements Future<any>{
-
-    parameters: { [name:string]:any}
-
-    function:n.CallableFunction;
-
-    call(){
-        return this.function.call(this.parameters)
-    }
-}
-
-interface Page{
-    value():Promise<any[]>
-    next():Page
-    previous():Page
-}
-
-
-export abstract class AbstractPagedCollection{
-
-    protected _range: model.Type;
-
-
-    constructor(protected _n: n.CallableFunction) {
-        if (_n.returnType().isArray()) {
-            this._range = _n.returnType().componentType();
-        }
-    }
-
-    abstract forEach(f: (v: any, i?: number) => void): Promise<any>
-
-    map(f: (v: any, i?: number) => any) {
-        var mm=[];
-        return this.forEach((x,i)=>{
-            mm.push(f(x,i));
-        }).then(x=>Promise.resolve(mm));
-    }
-
-    range(): model.Type{
-        return this._range;
-    }
-}
 
 export interface Collection extends BasicCollection{
 

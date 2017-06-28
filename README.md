@@ -50,6 +50,7 @@ or is annotated with a paging annotation is a collection.
 
 ```raml 
  paging:
+  properties:
    offset?: 
      type: string  
      description: name of the parameter containing offset from the start of the collection
@@ -73,7 +74,6 @@ or is annotated with a paging annotation is a collection.
 or alternatively you may use this annotations:
 
 ```raml 
- paging:
    offset?: 
      type: nil  
      description: annotate parameter with this annotation to mark that it contains  offset from the start of the collection
@@ -202,6 +202,8 @@ this example shows how github issues endpoint might be annotated to get understa
           body:
               type: Issue[]
 ```
+
+Complete RAML library with annotation types describing semantics of collections may be found [here](collections.raml).
 
 ### Usage:
 

@@ -1,10 +1,73 @@
 #%RAML 1.0 Library
+usage: This library is designed to support describing semantics of collections in RAML
 annotationTypes:
-  collection: string| nil
-  paging:
+ paging:
+  properties:
+   offset?:
+     type: string
+     description: name of the parameter containing offset from the start of the collection
+   page?:
+     type: string
+     description: name of the parameter containing number of the page
+   limit?:
+      type: string
+      description: name of the parameter containing number of elements which you would like to get in the one page
+   result?:
+     type: string
+     description: name of the response body property containing elements of the collection
+   total?:
+     type: string
+     description: name of the response body property containing total number of  elements in the collection(with respect to current collection filters)
+   zeroBased?:
+     type: boolean
+     description: you can pass false here if element numbering in your collection starts from 1
+ offset?:
+     type: nil
+     description: annotate parameter with this annotation to mark that it contains  offset from the start of the collection
+ page?:
+     type: nil
+     description: annotate parameter with this annotation to mark that it contains number of the page
+ limit?:
+      type: nil
+      description: annotate parameter with this annotation to mark that it contains number of elements in the page
+ result?:
+     type: nil
+     description: annotate property of the result with this annotation to mark that it contains elements of the collection
+ total?:
+     type: nil
+     description: annotate property of the response with this annotation to mark that it contains total number of  elements in the collection(with respect to current collection filters)
+ filter:
+   description: Allows to mark that target parameter is used to filter collection contents
+   type: FilterMapping |  nil
+ ordering:
+   description: Allows to mark that target parameter is used to sort collection contents
+   type: OrderingMappings | nil
+ sortOrder:
+   description: Allows to mark that target parameter is used to manage sort direction of the collection
+types:
+  FilterMapping:
     properties:
-      result?:
-      total?:
-      offset?:
-      page?:
-      limit?:
+      property?:
+         type: string
+         description: name of the property which is used to filter collection elements
+      valueMappings?:
+            properties:
+               //:
+                 type: string
+                 description: allows to remap values of parameter to values of the filter
+      noFilterValue?:
+        type: string
+        description: value which is used when filter is not set
+      filterOp?:
+         description: operator which is used to perform filtration
+         default: eq
+  OrderingMapping:
+    properties:
+      property: string
+      descending?: boolean
+  OrderingMappings:
+    properties:
+      //:
+        type: string | OrderingMapping
+        description: maps parameter value to the name of the property which is used to sort the collection
+        enum: [ eq, lt, gt, like, ge, le ]
