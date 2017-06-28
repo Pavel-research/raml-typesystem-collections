@@ -61,6 +61,7 @@ types:
       filterOp?:
          description: operator which is used to perform filtration
          default: eq
+         enum: [ eq, lt, gt, like, ge, le ]
   OrderingMapping:
     properties:
       property: string
@@ -70,4 +71,3 @@ types:
       //:
         type: string | OrderingMapping
         description: maps parameter value to the name of the property which is used to sort the collection
-        enum: [ eq, lt, gt, like, ge, le ]
