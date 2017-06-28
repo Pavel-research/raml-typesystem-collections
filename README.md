@@ -176,7 +176,7 @@ this example shows how github issues endpoint might be annotated to get understa
           (core.reference): User.login
           (core.filter):
         direction:
-          (core.sortDirection): true
+          (core.sortDirection): 
           enum: [asc,desc]
           default: desc
         labels:
