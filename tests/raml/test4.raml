@@ -11,6 +11,13 @@ types:
       name: string
 /items:
    get:
+     (c.paging):
+       offset: offset
+       limit: limit
+     queryParameters:
+       offset: number
+       limit?:  number
+       filter?: string
      responses:
        200:
          body: Item[]

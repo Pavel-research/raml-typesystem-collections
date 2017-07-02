@@ -11,10 +11,12 @@ types:
       name: string
 /items:
    get:
-     (c.collection):
+     queryParameters:
+       offset: number
      (c.paging):
        result: items
        total: total
+       offset: offset
      responses:
        200:
          body:

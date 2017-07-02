@@ -1,0 +1,26 @@
+#%RAML 1.0
+title: Hello
+mediaType: application/json
+baseUri: https://api.stackexch3ange.com/2.2/
+uses:
+ c: ../../collections.raml
+types:
+  Item:
+    properties:
+      id: integer
+      name: string
+/answers:
+   get:
+     (c.paging):
+       page: page
+       limit: limit
+       result: items
+     queryParameters:
+       page: number
+       limit?:  number
+       site: string
+     responses:
+       200:
+         body:
+          properties:
+            items: Item[]
