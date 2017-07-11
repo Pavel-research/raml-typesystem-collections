@@ -1,0 +1,60 @@
+#%RAML 1.0
+baseUri: https://launchlibrary.net/1.2/
+title: Launch Library
+uses:
+  c: ../../collections.raml
+types:
+  Base:
+    properties:
+      name: string
+      wikiURL?: string
+      mapURL?: string
+  Pad: Base
+  Agency: Base
+  Location:
+    properties:
+      pads:
+        type: Pad[]
+  Mission:
+    type: Base
+    properties:
+      description?: string
+  Rocket:
+    type: Base
+    properties:
+      imageURL?: string
+  Launch:
+    properties:
+      net: datetime
+      name: string
+      location?: Location
+      rocket?: Rocket
+      status: number
+      vidURLs:
+        type: string[]
+        displayName: Videos
+      missions?:
+        type: Mission[]
+mediaType: application/json
+/launch:
+  get:
+    (c.paging):
+      total: total
+      result: launches
+      offset: offset
+    displayName: Launches
+    queryParameters:
+      offset?: number
+      startdate?:
+        type: date-only
+        default: 2015-01-01
+      enddate?: date-only
+      mode?: string
+    responses:
+      200:
+        body:
+          properties:
+            launches: Launch[]
+            offset: number
+            count: number
+            total: number

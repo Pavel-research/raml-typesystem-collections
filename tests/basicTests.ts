@@ -157,4 +157,21 @@ describe("structure tests", function () {
 
         })
     })
+    it("test9", function (done) {
+        var l = loadApi("test8");
+        var sum = 0;
+        assert(colections.isCollection(l.functions()[0]));
+        let col = colections.toCollection(l.functions()[0])
+        assert(col.validate().isOk);
+        col.forEach(x => {
+            if (x.net) {
+                done();
+            }
+            return false;
+        }).then(x => {
+            assert(true)
+        }, e => {
+
+        })
+    })
 })
