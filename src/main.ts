@@ -302,5 +302,8 @@ export class BasicPagedCollection implements Collection {
 }
 
 export function toCollection(n: n.CallableFunction): Collection {
+    if (!isCollection(n)){
+        return null;
+    }
     return new BasicPagedCollection(n);
 }
