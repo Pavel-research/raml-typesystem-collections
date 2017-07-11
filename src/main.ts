@@ -98,11 +98,15 @@ export function collectionInfo(n: n.CallableFunction): CollectionInfo {
     var sortDirection: string = null;
     var orderingMappings: OrderingMappings = null;
     var pspec: PagingSpecification = {};
-    if (n.returnType().isArray()) {
-        range = n.returnType().componentType();
+    let returnType = n.returnType();
+    if (!returnType){
+        return null;
+    }
+    if (returnType.isArray()) {
+        range = returnType.componentType();
     }
 
-        n.returnType().properties().forEach(x => {
+        returnType.properties().forEach(x => {
             let range = x.range();
             if (hasAnnotation(range, "result")) {
                 range = x.range();
@@ -136,7 +140,7 @@ export function collectionInfo(n: n.CallableFunction): CollectionInfo {
         if (ps) {
             var res = ps.result;
             if (res) {
-                range = n.returnType().property(res).range();
+                range = returnType.property(res).range();
             }
             pspec.offset = ps.offset;
             pspec.page = ps.page;
